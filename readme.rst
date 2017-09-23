@@ -11,9 +11,9 @@ Small Howto Git ci-pakdhe
 
 D:\www\>git clone https://github.com/antoub/ci-pakdhe.git
 D:\www\>cd ci-pakdhe
-#KIRIM perubahan file ke GIT :  
 
 
+Send file local to github :  
 1. ok, ready to send files to GIT :
 D:\www\ci-pakdhe\>git add * --all
 D:\www\ci-pakdhe\>git commit -m "Keterangan Commit"
