@@ -1,10 +1,15 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
-	
-	class MY_Controller extends MX_Controller{
+	/*
+		Non Login Core Controller
+	*/
+	class MY_Controller extends MX_Controller {
+		var $data;
+		var $CI;
+		var $MYCFG;
 		
-		public function __construct(){
+		function __construct(){
 			parent::__construct();
-			
+			$this->data['content']=(isset($this->data['content'])) ? $this->data['content'] : 'Content Goes Here';
 		}
 		
 		function __nocache() {
@@ -14,6 +19,15 @@
 			$this->output->set_header('Pragma: no-cache');
 		}
 		
+		function __current_session_user(){
+			if ($this->ion_auth->logged_in()){			
+				$this->session->userdata['first_name'] = $this->ion_auth->user()->row()->first_name;
+				$this->session->userdata['last_name'] = $this->ion_auth->user()->row()->last_name;
+				$this->session->userdata['phone'] = $this->ion_auth->user()->row()->phone;
+				
+			}		
+		}		
+
 		function display(){
 			if($this->data['tpl']=='home'){
 				$tpl='frontend/home';
@@ -26,11 +40,16 @@
 		}
 		
 	}
-	
+
+	/*
+		Login Core Controller
+	*/
 	class MY_Admin extends MY_Controller {
 		
 		public function __construct(){
 			parent::__construct();
+			if (!$this->ion_auth->logged_in()) redirect('/acl/login/logout');
+			$this->__current_session_user();			
 		}
 		
 	}		
