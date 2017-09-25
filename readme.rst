@@ -8,9 +8,10 @@ CI-pakdhe is CodeIgniter based Application Development Framework with couple of 
 Component
 *******************
 - Codeigniter 3
+- AdminLTE
 - Ion Auth, 
 - Wirezdesign-HMVC
-- AdminLTE
+- Asset Helper phil.sturgeon@styledna.net
 
 *******************
 Small Howto Git ci-pakdhe
