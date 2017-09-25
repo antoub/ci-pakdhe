@@ -5,11 +5,11 @@ What is ci-pakdhe
 CI-pakdhe is CodeIgniter based Application Development Framework with couple of adding tools as my core dev on web app dev. This CI Framework is still on heavy dev. Please contact me (antoub@gmail.com) for further discussion.
 
 *******************
-Component
+Component + change
 *******************
-- Codeigniter 3
-- AdminLTE
-- Ion Auth, 
+- Codeigniter 3.x
+- AdminLTE 2.x
+- Ion Auth
 - Wirezdesign-HMVC
 	- change MY_Loader.php to move view path from /application/view/ to /themes/ folder
 - Asset Helper phil.sturgeon@styledna.net
