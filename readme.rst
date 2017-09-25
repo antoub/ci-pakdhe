@@ -20,10 +20,10 @@ Core Component + Customization
 Small Howto Git ci-pakdhe
 *******************
 1. Get data form github server & commit :
-	- D:\\www\\>git clone https://github.com/antoub/ci-pakdhe.git
-	- D:\www\>cd ci-pakdhe
-	- D:\\www\\ci-pakdhe\>git add * --all
-	- D:\\www\\ci-pakdhe\>git commit -m "Keterangan Commit"
+	- D:\\www>git clone https://github.com/antoub/ci-pakdhe.git
+	- D:\\www>cd ci-pakdhe
+	- D:\\www\\ci-pakdhe>git add * --all
+	- D:\\www\\ci-pakdhe>git commit -m "Keterangan Commit"
 	- D:\\www\\ci-pakdhe>git push origin master  
 2. if failed, get new data from server :
 	- D:\\www\\ci-pakdhe>git pull
