@@ -1,7 +1,7 @@
 <div class="box box-widget widget-user" style="margin-top:10px;">
 	<div class="widget-user-header bg-black" style="background: url('<?php echo image_asset_url('photo4.jpg','adminlte');?>') center center;">
-		<h3 class="widget-user-username"><i class="fa fa-calendar"></i>&nbsp;Application Name</h3>
-		<h5 class="widget-user-desc">Small Description of Aplikasi</h5>
+		<h3 class="widget-user-username"><i class="fa fa-calendar"></i>&nbsp;<b>Application</b>Name</h3>
+		<h5 class="widget-user-desc">Small Description of application goes here about 10 words.</h5>
 	</div>
 	<div class="widget-user-image">
 		<img class="img-circle" src="<?php echo image_asset_url('osi_symbol.png');?>" alt="Logo App">
