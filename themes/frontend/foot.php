@@ -1,4 +1,4 @@
-  <footer class="main-footer">
+  <footer class="main-footer bg-black">
     <div class="container">
       <div class="pull-right hidden-xs">
         <b>Version</b> 2.3.8

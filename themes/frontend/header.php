@@ -8,7 +8,7 @@
 	<?php echo css_asset('bootstrap.min.css','bootstrap');?>
 	<?php echo css_asset('font-awesome.min.css','font-awesome');?>
 	<?php echo css_asset('AdminLTE.min.css','adminlte');?>
-	<?php echo css_asset('skins/_all-skins.min.css','adminlte');?>
+	<?php echo css_asset('skins/_all-skins.css','adminlte');?>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
