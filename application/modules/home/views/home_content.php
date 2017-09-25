@@ -1,36 +1,31 @@
-<section class="content-header">
-	<h1>
-		Top Navigation
-		<small>Example 2.0</small>
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li><a href="#">Layout</a></li>
-		<li class="active">Top Navigation</li>
-	</ol>
-</section>
-<section class="content">
-	<div class="callout callout-info">
-		<h4>Tip!</h4>
-		
-		<p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-			sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-		links instead.</p>
+<div class="box box-widget widget-user" style="margin-top:10px;">
+	<div class="widget-user-header bg-black" style="background: url('<?php echo image_asset_url('photo4.jpg','adminlte');?>') center center;">
+		<h3 class="widget-user-username"><i class="fa fa-calendar"></i>&nbsp;Application Name</h3>
+		<h5 class="widget-user-desc">Small Description of Aplikasi</h5>
 	</div>
-	<div class="callout callout-danger">
-		<h4>Warning!</h4>
-		
-		<p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-		and the content will slightly differ than that of the normal layout.</p>
+	<div class="widget-user-image">
+		<img class="img-circle" src="<?php echo image_asset_url('osi_symbol.png');?>" alt="Logo App">
 	</div>
-	<div class="box box-default">
-		<div class="box-header with-border">
-			<h3 class="box-title">Blank Box</h3>
+	<div class="box-footer">
+		<div class="row">
+			<div class="col-sm-4 border-right">
+				<div class="description-block">
+					<span class="description-text"><i class="fa fa-university"></i>&nbsp;ORGANISATION</span>
+					<h5 class="description-header">320</h5>
+				</div>
+			</div>
+			<div class="col-sm-4 border-right">
+				<div class="description-block">
+					<span class="description-text"><i class="fa fa-tags"></i>&nbsp;GROUPS</span>
+					<h5 class="description-header">4</h5>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="description-block">
+					<span class="description-text"><i class="fa fa-users"></i>&nbsp;USERS</span>
+					<h5 class="description-header">35</h5>
+				</div>
+			</div>
 		</div>
-		<div class="box-body">
-			The great content goes here
-		</div>
-		<!-- /.box-body -->
 	</div>
-	<!-- /.box -->
-</section>
+</div>
