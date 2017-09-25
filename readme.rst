@@ -9,7 +9,7 @@ Core Component + Customization
 *******************
 - Codeigniter 3.x
 - AdminLTE 2.x
-- Ion Auth
+- Ion Auth (https://github.com/benedmunds/CodeIgniter-Ion-Auth)
 	- extended it with orgs tables
 - Wirezdesign-HMVC
 	- change MY_Loader.php to move view path from /application/view/ to /themes/ folder
