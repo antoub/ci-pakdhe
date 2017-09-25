@@ -11,6 +11,7 @@ Component
 - AdminLTE
 - Ion Auth, 
 - Wirezdesign-HMVC
+	- change MY_Loader.php to move view path from /application/view/ to /themes/ folder
 - Asset Helper phil.sturgeon@styledna.net
 
 *******************
