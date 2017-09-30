@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'this is ID for menus',
   `parent_id` int(10) unsigned DEFAULT '0',
-  `path` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `text` varchar(255) NOT NULL,
   `icon` varchar(255) DEFAULT 'glyphicon glyphicon-tasks',
   `list_order` varchar(3) DEFAULT '0',

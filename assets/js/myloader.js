@@ -1,8 +1,8 @@
 function ajaxindicatorstart(text) {
 	if(jQuery('body').find('#resultLoading').attr('id') != 'resultLoading'){
-	jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="'+BASE_URL+'assets/image/ajax-loader.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
+		jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="'+BASE_URL+'assets/image/ajax-loader.gif"><div>'+text+'</div></div><div class="bg"></div></div>');
 	}
-
+	
 	jQuery('#resultLoading').css({
 		'width':'100%',
 		'height':'100%',
@@ -14,7 +14,7 @@ function ajaxindicatorstart(text) {
 		'bottom':'0',
 		'margin':'auto'
 	});
-
+	
 	jQuery('#resultLoading .bg').css({
 		'background':'#000000',
 		'opacity':'0.7',
@@ -23,7 +23,7 @@ function ajaxindicatorstart(text) {
 		'position':'absolute',
 		'top':'0'
 	});
-
+	
 	jQuery('#resultLoading>div:first').css({
 		'width': '250px',
 		'height':'75px',
@@ -37,24 +37,41 @@ function ajaxindicatorstart(text) {
 		'font-size':'16px',
 		'z-index':'10',
 		'color':'#ffffff'
-
+		
 	});
-
-    jQuery('#resultLoading .bg').height('100%');
-       jQuery('#resultLoading').fadeIn(300);
-    jQuery('body').css('cursor', 'wait');
+	
+	jQuery('#resultLoading .bg').height('100%');
+	jQuery('#resultLoading').fadeIn(300);
+	jQuery('body').css('cursor', 'wait');
 }	
 
 function ajaxindicatorstop(){
-    jQuery('#resultLoading .bg').height('100%');
-       jQuery('#resultLoading').fadeOut(300);
-    jQuery('body').css('cursor', 'default');
+	jQuery('#resultLoading .bg').height('100%');
+	jQuery('#resultLoading').fadeOut(300);
+	jQuery('body').css('cursor', 'default');
 }
 
 jQuery(document).ajaxStart(function () {
  	//show ajax indicator
 	ajaxindicatorstart('loading data.. please wait..');
-}).ajaxStop(function () {
+	}).ajaxStop(function () {
 	//hide ajax indicator
 	ajaxindicatorstop();
+});
+
+
+$(document).ready(function () {
+	$('.treeview').each(function(e){
+		var current_loc = window.location.href;
+		var current_pmenu = $(this);
+		//console.log(current_pmenu);
+		$(this).find('li').each(function(li_item){
+			var current_cmenu = $(this);
+			var ch = $(this).find('a').attr('href');
+			if(current_loc==ch){
+				current_pmenu.addClass('active');
+				current_cmenu.addClass('active');
+			}
+		});
+	});
 });

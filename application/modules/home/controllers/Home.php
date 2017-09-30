@@ -11,4 +11,18 @@ class Home extends MY_Controller {
 		$this->data['content']=$this->load->view('home_content','',true);
 		$this->display();
 	}
+	
+	function not_found(){
+		$this->data['tpl']='single';
+		$this->data['content']=$this->load->view('home_404','',true);
+		$this->display();	
+	}
+	
+	function info(){
+		$this->data['tpl']='single';
+		$this->data['content']=$this->load->view('home_info','',true);
+		$this->display();		
+	}
+	
+	
 }

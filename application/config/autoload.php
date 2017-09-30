@@ -103,7 +103,7 @@ $autoload['helper'] = array('url','asset');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('pakdhe_config');
 
 /*
 | -------------------------------------------------------------------
