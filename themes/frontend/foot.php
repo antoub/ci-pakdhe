@@ -1,11 +1,10 @@
   <footer class="main-footer bg-black">
     <div class="container">
       <div class="pull-left hidden-xs">
-        <b>Version</b> 2.3.8
+        <b>Version</b> <?php echo $MYCFG['version'];?>
       </div>
       <div class="pull-right">
-      <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-      reserved.
+				<strong>&copy; 2017</strong> <?php echo $MYCFG['org_name'];?> <?php echo $MYCFG['footer'];?>
 			</div>
     </div>
   </footer>
