@@ -4,7 +4,7 @@
 			<span class="<?php echo $tbl_icon;?>"></span>&nbsp;<?php echo $tbl_title;?>
 			<span class="label bg-black"><span id="total_record"></span>&nbsp;Total Records</span>
 			<span class="pull-right">
-				<?php echo modules::run('acl/widget/group_org_user');?>
+				<?php echo modules::run('acl/widget_acl/group_org_user');?>
 			</span>
 			
 		</div>
