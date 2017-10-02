@@ -199,8 +199,21 @@
 			}
 		}
 		
-
-
+	function buildtree($src_arr, $parent_id = 0, $tree = array()) {
+    foreach($src_arr as $idx => $row){
+			if($row['parent_id'] == $parent_id){
+				foreach($row as $k => $v){
+					$tree[$row['id']][$k] =  $v;
+				}
+				unset($src_arr[$idx]);
+				$tree[$row['id']]['nodes'] = $this->buildtree($src_arr, $row['id']);
+			}
+    }
+		
+		ksort($tree);
+    return $tree;
+	}		
+		
 		function meta($path_url='',$is_return=false){
 			if (!$this->ion_auth->logged_in()) redirect('/acl/logout');
 			
