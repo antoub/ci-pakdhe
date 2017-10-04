@@ -92,17 +92,17 @@
 							<select id="orgs" name="orgs" class="form-control input-sm">
 								<?php foreach($tree_org as $all):?>
 									<option value="<?php echo $all['id'];?>"><?php echo $all['name'];?></option>
-									<?php if(count($all['children'])):?>
-										<?php foreach($all['children'] as $key_org=>$val_org):?>
+									<?php if(count($all['nodes'])):?>
+										<?php foreach($all['nodes'] as $key_org=>$val_org):?>
 											<option value="<?php echo $val_org['id'];?>">-&nbsp;<?php echo strtoupper($val_org['name']);?></option>
-												<?php if(count($val_org['children'])):?>
-													<?php foreach($val_org['children'] as $key_skpk=>$val_skpk):?>
+												<?php if(count($val_org['nodes'])):?>
+													<?php foreach($val_org['nodes'] as $key_skpk=>$val_skpk):?>
 														<option value="<?php echo $val_skpk['id'];?>">--&nbsp;<?php echo $val_skpk['name'];?></option>
-														<?php if(count($val_skpk['children'])):?>
-															<?php foreach($val_skpk['children'] as $key_bid=>$val_bid):?>
+														<?php if(count($val_skpk['nodes'])):?>
+															<?php foreach($val_skpk['nodes'] as $key_bid=>$val_bid):?>
 																<option value="<?php echo $val_bid['id'];?>">---&nbsp;<?php echo $val_bid['name'];?></option>
-																<?php if(count($val_bid['children'])):?>
-																	<?php foreach($val_bid['children'] as $key_sie=>$val_sie):?>
+																<?php if(count($val_bid['nodes'])):?>
+																	<?php foreach($val_bid['nodes'] as $key_sie=>$val_sie):?>
 																		<option value="<?php echo $val_sie['id'];?>">----&nbsp;<?php echo $val_sie['name'];?></option>														
 																	<?php endforeach;?>
 																<?php endif;?>

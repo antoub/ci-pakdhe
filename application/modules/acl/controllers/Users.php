@@ -30,7 +30,7 @@ class Users extends MY_Admin {
 		
 		//for tree orgs
 		$mydata['tree_org']=$this->buildtree($mydata['orgs']);
-		
+		//print_r($mydata['tree_org']);die;
 		$this->data['content']=$this->load->view('grid_users',$mydata,true);
 		$this->display();
 	}
