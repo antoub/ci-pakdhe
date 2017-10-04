@@ -35,7 +35,6 @@
 				$org = $this->__get_org_user($this->ion_auth->user()->row()->user_id);
 				$this->session->userdata['user_org'] = $org[0]['org_id'];;
 				$this->session->userdata['org_name'] = $org[0]['org_name'];;
-				
 			}		
 		}		
 

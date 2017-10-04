@@ -39,11 +39,7 @@ INSERT INTO `groups_menus` (`id`, `group_id`, `menu_id`, `akses`, `tambah`, `uba
 (5,	1,	5,	1,	1,	1,	1),
 (6,	1,	6,	1,	1,	1,	1),
 (7,	1,	7,	1,	1,	1,	1),
-(8,	1,	8,	1,	1,	1,	1),
-(9,	1,	9,	1,	1,	1,	1),
-(10,	1,	10,	1,	1,	1,	1),
-(11,	1,	11,	1,	1,	1,	1),
-(12,	1,	12,	1,	1,	1,	1);
+(8,	1,	8,	1,	1,	1,	1);
 
 DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE `login_attempts` (
@@ -133,8 +129,7 @@ CREATE TABLE `users_groups` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(1,	1,	1),
-(2,	1,	2);
+(1,	1,	1);
 
 DROP TABLE IF EXISTS `users_orgs`;
 CREATE TABLE `users_orgs` (
@@ -147,8 +142,6 @@ CREATE TABLE `users_orgs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users_orgs` (`id`, `user_id`, `org_id`) VALUES
-(2,	1,	1),
-(5,	3,	3),
-(6,	2,	2);
+(2,	1,	1);
 
--- 2017-10-02 02:36:19
+-- 2017-10-04 16:20:18

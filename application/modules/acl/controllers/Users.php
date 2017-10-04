@@ -28,8 +28,9 @@ class Users extends MY_Admin {
 		$this->db->order_by('parent_id,name','asc');		
 		$mydata['orgs'] = $this->db->get('orgs')->result_array();
 		
-		//for org,bid,sie 
+		//for tree orgs
 		$mydata['tree_org']=$this->buildtree($mydata['orgs']);
+		
 		$this->data['content']=$this->load->view('grid_users',$mydata,true);
 		$this->display();
 	}

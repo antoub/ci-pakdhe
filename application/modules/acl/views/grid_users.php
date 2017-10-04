@@ -117,65 +117,6 @@
 							</select>
 						</div>
 
-						<div class="form-group" id="corgs">
-							<label>Nama Bidang (sederajat)</label>
-							<select id="bidang" name="bidang" class="form-control input-sm">
-								<?php foreach($tree_org as $all):?>
-									<option value="<?php echo $all['id'];?>"><?php echo $all['name'];?></option>
-									<?php if(count($all['children'])):?>
-										<?php foreach($all['children'] as $key_org=>$val_org):?>
-											<option value="<?php echo $val_org['id'];?>">-&nbsp;<?php echo strtoupper($val_org['name']);?></option>
-												<?php if(count($val_org['children'])):?>
-													<?php foreach($val_org['children'] as $key_skpk=>$val_skpk):?>
-														<option value="<?php echo $val_skpk['id'];?>">--&nbsp;<?php echo $val_skpk['name'];?></option>
-														<?php if(count($val_skpk['children'])):?>
-															<?php foreach($val_skpk['children'] as $key_bid=>$val_bid):?>
-																<option value="<?php echo $val_bid['id'];?>">---&nbsp;<?php echo $val_bid['name'];?></option>
-																<?php if(count($val_bid['children'])):?>
-																	<?php foreach($val_bid['children'] as $key_sie=>$val_sie):?>
-																		<option value="<?php echo $val_sie['id'];?>">----&nbsp;<?php echo $val_sie['name'];?></option>														
-																	<?php endforeach;?>
-																<?php endif;?>
-															<?php endforeach;?>
-														<?php endif;?>
-														
-													<?php endforeach;?>
-												<?php endif;?>											
-										<?php endforeach;?>
-									<?php endif;?>
-								<?php endforeach;?>
-							</select>
-						</div>
-
-						<div class="form-group" id="corgs">
-							<label>Nama Seksi (sederajat)</label>
-							<select id="seksi" name="seksi" class="form-control input-sm">
-								<?php foreach($tree_org as $all):?>
-									<option value="<?php echo $all['id'];?>"><?php echo $all['name'];?></option>
-									<?php if(count($all['children'])):?>
-										<?php foreach($all['children'] as $key_org=>$val_org):?>
-											<option value="<?php echo $val_org['id'];?>">-&nbsp;<?php echo strtoupper($val_org['name']);?></option>
-												<?php if(count($val_org['children'])):?>
-													<?php foreach($val_org['children'] as $key_skpk=>$val_skpk):?>
-														<option value="<?php echo $val_skpk['id'];?>">--&nbsp;<?php echo $val_skpk['name'];?></option>
-														<?php if(count($val_skpk['children'])):?>
-															<?php foreach($val_skpk['children'] as $key_bid=>$val_bid):?>
-																<option value="<?php echo $val_bid['id'];?>">---&nbsp;<?php echo $val_bid['name'];?></option>
-																<?php if(count($val_bid['children'])):?>
-																	<?php foreach($val_bid['children'] as $key_sie=>$val_sie):?>
-																		<option value="<?php echo $val_sie['id'];?>">----&nbsp;<?php echo $val_sie['name'];?></option>														
-																	<?php endforeach;?>
-																<?php endif;?>
-															<?php endforeach;?>
-														<?php endif;?>
-														
-													<?php endforeach;?>
-												<?php endif;?>											
-										<?php endforeach;?>
-									<?php endif;?>
-								<?php endforeach;?>
-							</select>
-						</div>
 						<div class="form-group">
 							<label>Company/Desc</label>
 							<input type="text" name="company" id="company" class="form-control" />
@@ -268,14 +209,6 @@
 				}, {
 						field: 'orgs',
 						title: 'ORGS',
-						halign:'center'
-				}, {
-						field: 'bidang',
-						title: 'BIDANG',
-						halign:'center'
-				}, {
-						field: 'seksi',
-						title: 'SEKSI',
 						halign:'center'
 				}
 				],
