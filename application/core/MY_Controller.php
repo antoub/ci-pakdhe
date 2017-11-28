@@ -72,7 +72,6 @@
 			$this->path_theme='backend';
 		}
 		
-		
 		function display(){
 			$menu = $this->__menu();
 			$this->data['menus']=$menu;

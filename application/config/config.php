@@ -521,3 +521,8 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$modules_location = '../modules';
+// don't need to touch :)
+$config['modules_locations'] = array(APPPATH . $modules_location .'/' => '../'.$modules_location.'/');
+
