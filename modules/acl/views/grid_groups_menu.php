@@ -57,7 +57,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Nama Group</label>
-								<select id="group_id" name="group_id" style="width:100%;" tabindex="1">
+								<select id="group_id" name="group_id" style="width:100%;" class="form-control" tabindex="1">
 									<option value="0">---Pilih-Group---</option>
 									<?php foreach($ls_groups as $k=>$v):?>
 										<option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
@@ -68,7 +68,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Nama Menu</label>
-								<select id="menu_id" name="menu_id" style="width:100%;" tabIndex="2" disabled>
+								<select id="menu_id" name="menu_id" style="width:100%;" class="form-control" tabIndex="2" disabled>
 									<option value="0">---Pilih-Menu---</option>
 									<?php foreach($ls_menu as $k=>$v):?>
 										<option value="<?php echo $v['id'];?>"><?php echo ($v['parent_id'])? '--&nbsp': '';echo $v['name'];?></option>
