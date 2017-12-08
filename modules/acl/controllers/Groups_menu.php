@@ -9,8 +9,11 @@ class Groups_menu extends MY_Admin {
 
 	function index() {
 		$this->data['css']=css_asset('bootstrap-table.min.css','bootstrap-table');
+		$this->data['css'].=css_asset('bootstrap-table-group-by.css','bootstrap-table');
 		$this->data['css'].=css_asset('select2.min.css','select2');
+		
 		$this->data['js']=js_asset('bootstrap-table.min.js','bootstrap-table');
+		$this->data['js'].=js_asset('bootstrap-table-group-by.js','bootstrap-table');
 		$this->data['js'].=js_asset('select2.full.min.js','select2');
 		
 		$meta = $this->meta('acl/groups_menu/',true);

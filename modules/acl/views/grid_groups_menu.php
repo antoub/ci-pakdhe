@@ -1,45 +1,46 @@
+
 <section class="content">
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel">
-			<div class="panel-heading bg-blue">
-				<i class="<?php echo $icon;?>"></i>&nbsp;Manage <?php echo $title;?>
-				<span class="label bg-black"><span id="total_record"></span>&nbsp;Total Records</span>&nbsp;
-				<span class="pull-right">
-					<?php echo modules::run('acl/widget_acl/group_org_user');?>					
-				</span>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading bg-blue">
+					<i class="<?php echo $icon;?>"></i>&nbsp;Manage <?php echo $title;?>
+					<span class="label bg-black"><span id="total_record"></span>&nbsp;Total Records</span>&nbsp;
+					<span class="pull-right">
+						<?php echo modules::run('acl/widget_acl/group_org_user');?>					
+					</span>
+				</div>
+			<div id="toolbar">		
+				<?php if($auth_meta['add']):?>
+					<a id="btn-add" class="btn btn-primary btn-sm" href="<?php echo site_url('acl/groups_menu/add/');?>" alt="ADD">
+						<i class="fa fa-plus-circle"></i>&nbsp;Add
+					</a>
+				<?php endif;?>
+				<?php if($auth_meta['edit']):?>
+					<a id="btn-edit" class="btn btn-info btn-sm" href="<?php echo site_url('acl/groups_menu/edit/');?>" alt="Edit">
+						<i class="fa fa-pencil"></i>&nbsp;Edit
+					</a>
+				<?php endif;?>
+				<?php if($auth_meta['del']):?>
+					<a id="btn-del" class="btn btn-danger btn-sm" href="<?php echo site_url('acl/groups_menu/del/');?>" alt="Del">
+						<i class="fa fa-trash-o"></i>&nbsp;Del
+					</a>
+				<?php endif;?>
 			</div>
-		<div id="toolbar">		
-			<?php if($auth_meta['add']):?>
-				<a id="btn-add" class="btn btn-primary btn-sm" href="<?php echo site_url('acl/groups_menu/add/');?>" alt="ADD">
-					<i class="fa fa-plus-circle"></i>&nbsp;Add
-				</a>
-			<?php endif;?>
-			<?php if($auth_meta['edit']):?>
-				<a id="btn-edit" class="btn btn-info btn-sm" href="<?php echo site_url('acl/groups_menu/edit/');?>" alt="Edit">
-					<i class="fa fa-pencil"></i>&nbsp;Edit
-				</a>
-			<?php endif;?>
-			<?php if($auth_meta['del']):?>
-				<a id="btn-del" class="btn btn-danger btn-sm" href="<?php echo site_url('acl/groups_menu/del/');?>" alt="Del">
-					<i class="fa fa-trash-o"></i>&nbsp;Del
-				</a>
-			<?php endif;?>
-		</div>
-			<table id="grid_kec"
-					data-show-refresh="true"
-          data-show-export="true"
-          data-classes="table table-no-bordered"
- 					
-          data-pagination="true"
-          data-id-field="id"
-          data-page-list="[10, 25, 50, 100, ALL]"
-          data-side-pagination="server" >
-			</table>
-			
+				<table id="grid_kec"
+						data-show-refresh="true"
+						data-show-export="true"
+						data-classes="table table-no-bordered"
+						
+						data-pagination="true"
+						data-id-field="id"
+						data-page-list="[10, 25, 50, 100, ALL]"
+						data-side-pagination="server" >
+				</table>
+				
+			</div>
 		</div>
 	</div>
-</div>
 </section>
 
 <div class="modal fade" id="myModal">
@@ -120,12 +121,11 @@ $(document).ready(function(){
 
 	$('#grid_kec').bootstrapTable({
 		toolbar:'#toolbar',
-		pagination:true,
 		search:true,
+		pagination:true,
 		pageSize:10,
 		url: SITE_URL+'/acl/groups_menu/get_json/',
-		pageSize:10,
-		singleSelect:true,
+		singleSelect:true,		
 		columns: [
 				{
 					field: 'state',
