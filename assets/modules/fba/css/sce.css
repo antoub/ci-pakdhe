@@ -1,0 +1,161 @@
+/*********************************************************************
+* #### jQuery File Browser Awesome v0.2.0 ####
+* Coded by Ican Bachors 2014.
+* http://ibacor.com/labs/jquery-file-browser-awesome/
+* Updates will be posted to this site.
+*********************************************************************/
+
+#fba {
+	font-family: Arial;
+	font-size: 1em;
+	display: block;
+	color: #333;
+	padding-bottom:10px;
+}
+#fba .col-md-4, .col-md-8 {
+	padding:0px !important;
+}
+#fba .fba_header,
+#fba .fba_body,
+#fba .fba_body .fba_content,
+#fba .fba_body .fba_root {
+	display: block;
+	margin: 0;
+}
+
+#fba .fba_header,
+#fba .fba_body .fba_content,
+#fba .fba_body .fba_root {
+	padding: 4px 5px 4px;
+}
+
+#fba .fba_header div,
+#fba .fba_body .fba_content div {
+	display: inline-block;
+	width: 33%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#fba .name {
+	width:50% !important;
+}
+#fba .size {
+	width:20% !important;
+}
+#fba .modif {
+	width:30% !important;
+}
+
+#fba .fba_header {
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border: 1px solid #d8d8d8;
+	border-radius: 3px 3px 0 0;
+}
+
+#fba .fba_header div {
+	text-align: center;
+}
+
+#fba .fba_body {
+	border: 0px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	background: #fff;
+}
+
+#fba .fba_body .fba_content {
+	color: #888;
+	border: 0px;
+	border-bottom: 1px solid #ddd;
+}
+
+#fba .fba_body .fba_content div.name {
+	text-align: left;
+	font-size:12px !important;
+}
+
+#fba .fba_body .fba_content div.size,
+#fba .fba_body .fba_content div.modif {
+	text-align: right;
+	font-size:11px !important;
+}
+
+#fba .fba_body .fba_root {
+	border: 0px;
+	border-bottom: 1px solid #c9e6f2;
+	background-color: #f2f9fc;
+	color: #888;
+	text-align: left;
+}
+
+#fba .fba_direktori {
+	margin: 10px;
+}
+
+#fba .fba_direktori a {
+	color: #4078c0;
+	text-decoration: none;
+}
+
+#fba .fba_direktori .rfile,
+#fba .fba_direktori .sub {
+	font-family: Arial;
+	color: #4078c0;
+}
+
+#fba .fba_direktori .fa {
+	cursor: pointer;
+}
+
+#fba .fba_direktori .fa-folder {
+	color: #80a6cd;
+}
+
+#fba .fba_direktori .fa-file-text-o {
+	color: #767676;
+}
+
+#fba .fba_direktori .fa-cloud-download {
+	color: #ea97f4;
+}
+
+#fba .fba_direktori .fa-android {
+	color: #ADFF5C;
+}
+
+#fba .fba_direktori .fa-pdf-o {
+	color: #FF6C60;
+}
+
+#fba .fba_direktori .fa-level-up {
+	color: #FF5CAD;
+}
+
+#fba .fba_read_file {
+	display: block;
+	padding: 9px 10px 10px;
+	margin: 10px 10px 0px; 
+	background-color: #f5f5f5;
+	border: 1px solid #d8d8d8;
+	border-bottom: 0;
+	border-radius: 3px 3px 0 0;
+}
+
+#fba .fba_read_file #rf {
+	color: #888
+}
+
+#fba .CodeMirror {
+	border: 1px solid #d8d8d8;
+	line-height: 1.3;
+	min-height: 450px;
+	text-align: left;
+	margin: 0px 10px 10px;
+}
+
+#fba .CodeMirror-linenumbers {
+	padding: 0 8px;
+}

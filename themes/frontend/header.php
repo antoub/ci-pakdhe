@@ -6,7 +6,7 @@
   <title><?php echo $MYCFG['name_short'];?> <?php echo $MYCFG['name_short2'];?> | <?php echo $MYCFG['org_name'];?> <?php echo $MYCFG['city_name'];?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta name="author" content="antoub[at]gmail.com">
-  <link rel="icon" href="<?php echo image_asset_url('fa-cube_007dff.png');?>" />			
+  <link rel="icon" href="<?php echo image_asset_url($MYCFG['logo']);?>" />			
 	
 	<?php echo css_asset('bootstrap.min.css','bootstrap');?>
 	<?php echo css_asset('font-awesome.min.css','font-awesome');?>

@@ -103,7 +103,6 @@
 
 </section>
 
-
 <script>
 $(document).ready(function(){
 	var mydata=[];
@@ -158,6 +157,7 @@ $(document).ready(function(){
 						//the parents
 						
 					}
+					
 					treeData.push({
 						id:val.id,
 						parent_id:val.parent_id,
@@ -172,7 +172,9 @@ $(document).ready(function(){
 						nodes:cnodes
 					});
 				});
-
+				
+				console.log(treeData);
+				
 				$('#tree_category').treeview({
 					expandIcon: 'fa fa-plus',
 					collapseIcon: 'fa fa-minus',
@@ -305,8 +307,6 @@ $(document).ready(function(){
 				$('#tree_category').treeview('collapseAll', { silent: true });
 				condition = 'tutup';
 			}
-
-
 	});
 	
 });
