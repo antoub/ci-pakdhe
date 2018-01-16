@@ -9,6 +9,8 @@
 		
 		function __construct(){
 			parent::__construct();
+			//$this->output->enable_profiler(TRUE);
+
 			$this->data['content']=(isset($this->data['content'])) ? $this->data['content'] : 'Content Goes Here';
 			$this->CI = & get_instance();
 			$this->MYCFG=$this->CI->config->item('app');			
