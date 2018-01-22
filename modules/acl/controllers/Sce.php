@@ -13,6 +13,8 @@ class Sce extends MY_Admin {
 	}
 	
 	function index(){
+		$meta = $this->meta('acl/sce/',true);
+		$this->data['auth_meta']=$meta['act'];
 		$this->data['content']=$this->load->view('sce_view',$this->data,true);
 		$this->display($this->data);
 	}

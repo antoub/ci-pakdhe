@@ -1,4 +1,4 @@
-<?php if($auth_meta['act']['access']):?>
+<?php if($auth_meta['access']):?>
 <!-- Codemirror -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/addon/dialog/dialog.min.css">
