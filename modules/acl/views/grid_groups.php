@@ -1,3 +1,4 @@
+<?php if($auth_meta['act']['access']):?>
 <section class="content">
 <div class="row">
 	<div class="col-md-12">
@@ -220,3 +221,7 @@
 	
 });
 </script>
+
+<?php else:?>
+	Anda tidak berhak mengakses halaman ini.
+<?php endif;?>

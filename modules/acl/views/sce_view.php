@@ -1,3 +1,4 @@
+<?php if($auth_meta['act']['access']):?>
 <!-- Codemirror -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/addon/dialog/dialog.min.css">
@@ -135,3 +136,7 @@
 		</script>
 		
 </section>
+
+<?php else:?>
+	Anda tidak berhak mengakses halaman ini.
+<?php endif;?>

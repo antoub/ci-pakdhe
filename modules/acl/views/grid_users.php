@@ -1,3 +1,4 @@
+<?php if($auth_meta['act']['access']):?>
 <section class="content">
 	<div class="panel">
 		<div class="panel-heading bg-blue">
@@ -315,3 +316,6 @@
 
 	});
 </script>
+<?php else:?>
+	Anda tidak berhak mengakses halaman ini.
+<?php endif;?>

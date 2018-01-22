@@ -1,3 +1,4 @@
+<?php if($auth_meta['act']['access']):?>
 <section class="content-header">
 	<h1 style="border-bottom:1px solid #DDD;"><i class="<?php echo $icon;?>"></i>&nbsp;List <?php echo $title;?></h1>
 	<span class="breadcrumb">
@@ -311,3 +312,7 @@ $(document).ready(function(){
 	
 });
 </script>		
+
+<?php else:?>
+	Anda tidak berhak mengakses halaman ini.
+<?php endif;?>
