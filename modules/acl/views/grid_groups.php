@@ -1,4 +1,4 @@
-<?php if($auth_meta['act']['access']):?>
+<?php if($auth_meta['access']):?>
 <section class="content">
 <div class="row">
 	<div class="col-md-12">

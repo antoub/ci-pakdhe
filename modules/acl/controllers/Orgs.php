@@ -17,7 +17,9 @@ class Orgs extends MY_Admin {
 	
 	function index(){
 		$mydata = $this->data;
-		$mydata['auth_meta'] = $this->meta('acl/orgs/',true);
+		$meta = $this->meta('acl/orgs/',true);
+		$mydata['auth_meta'] = $meta['act'];
+		
 		//print_r($mydata);die;
 		$mydata['tbl_icon']=$this->data['icon'];
 		$mydata['tbl_title']=$this->data['title'];

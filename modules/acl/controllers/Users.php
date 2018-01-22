@@ -19,7 +19,9 @@ class Users extends MY_Admin {
 
 	function index(){
 		$this->load->library('form_validation');
-		$mydata['auth_meta'] = $this->meta('acl/users/',true);
+		
+		$meta = $this->meta('acl/users/',true);
+		$mydata['auth_meta'] = $meta['act'];
 		$mydata['tbl_icon']=$this->data['subicon'];
 		$mydata['tbl_title']=$this->data['title'];
 		$mydata['tbl']='mytabel';

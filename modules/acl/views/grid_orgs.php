@@ -1,4 +1,4 @@
-<?php if($auth_meta['act']['access']):?>
+<?php if($auth_meta['access']):?>
 
 <section class="content">
 	<div class="panel">
@@ -11,15 +11,15 @@
 			
 		</div>
 		<div id="toolbar">
-			<?php if($auth_meta['act']['add']):?>
+			<?php if($auth_meta['add']):?>
 			<button id="btn-add" name="btn-add" class="btn btn-primary btn-sm" disabled>
 				<i class="fa fa-plus-circle"></i>&nbsp;Add Child
 			</button>
 			<?php endif;?>
-			<?php if($auth_meta['act']['edit']):?>
+			<?php if($auth_meta['edit']):?>
 			<button id="btn-edit" name="btn-edit" class="btn btn-info btn-sm" disabled><i class="fa fa-pencil"></i> Edit</button>
 			<?php endif;?>
-			<?php if($auth_meta['act']['del']):?>
+			<?php if($auth_meta['del']):?>
 			<button id="btn-remove" name="btn-remove" class="btn btn-danger btn-sm" disabled><i class="fa fa-remove"></i> Delete</button>
 			<?php endif;?>
 			

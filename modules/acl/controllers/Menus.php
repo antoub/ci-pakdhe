@@ -10,7 +10,10 @@ class Menus extends MY_Admin {
 	}
 
 	function index() {
-		$this->data['auth_meta']=$this->meta['act'];
+		
+		$meta = $this->meta('acl/users/',true);		
+		$this->data['auth_meta']=$meta['act'];
+		
 		$this->data['icon']=$this->meta['icon'];
 		$this->data['title']=$this->meta['title'];
 		

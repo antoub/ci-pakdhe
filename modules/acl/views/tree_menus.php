@@ -1,4 +1,4 @@
-<?php if($auth_meta['act']['access']):?>
+<?php if($auth_meta['access']):?>
 <section class="content-header">
 	<h1 style="border-bottom:1px solid #DDD;"><i class="<?php echo $icon;?>"></i>&nbsp;List <?php echo $title;?></h1>
 	<span class="breadcrumb">
