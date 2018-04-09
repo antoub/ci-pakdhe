@@ -20,14 +20,16 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 	
-	<?php echo js_asset('jquery.min.js');?>
-	<?php echo js_asset('bootstrap.min.js','bootstrap');?>
-	<?php echo js_asset('app.min.js','adminlte');?>
-	
 	<script type="text/javascript">
 		var BASE_URL = '<?php echo base_url();?>';
 		var SITE_URL = '<?php echo site_url();?>';
 	</script>
+	
+	<?php echo js_asset('jquery.min.js');?>
+	<?php echo js_asset('bootstrap.min.js','bootstrap');?>
+	<?php echo js_asset('app.min.js','adminlte');?>
+	<?php echo js_asset('myloader.js');?>
+	
 	
 	<?php echo (isset($css)) ? $css : '';?>
 	<?php echo (isset($js)) ? $js : '';?>
