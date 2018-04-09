@@ -11,9 +11,11 @@
 			parent::__construct();
 			//$this->output->enable_profiler(TRUE);
 
-			$this->data['content']=(isset($this->data['content'])) ? $this->data['content'] : 'Content Goes Here';
 			$this->CI = & get_instance();
 			$this->MYCFG=$this->CI->config->item('app');			
+			$this->data['MYCFG']=$this->MYCFG;
+			
+			$this->data['content']=(isset($this->data['content'])) ? $this->data['content'] : 'Content Goes Here';
 		}
 		
 		function __nocache() {
@@ -56,11 +58,47 @@
 				}else{
 				$tpl='frontend/'.$this->data['tpl'];
 			}
-			$this->data['MYCFG']=$this->MYCFG;			
 			$this->load->view($tpl,$this->data);
 		}
 		
+		
+
+		function the_org_child_tree($org_id){
+			$child = array();
+			$ci =& get_instance();
+			$query=$ci->db->query('select id from orgs where parent_id='.$org_id)->result_array();
+			if(count($query)){
+				foreach($query as $k=>$v){
+					$child[]=$v['id'];
+					// recursion!! hurrah
+					$gchild = $this->the_org_child_tree($v['id']);
+					// merge the grand children into the children array
+					if( !empty($gchild) ) {
+						$child = array_merge($child, $gchild);
+					}
+				}
+				return $child;
+				}else{
+				return null;
+			}
+		}
+		
+	function buildtree($src_arr, $parent_id = 0, $tree = array()) {
+    foreach($src_arr as $idx => $row){
+			if($row['parent_id'] == $parent_id){
+				foreach($row as $k => $v){
+					$tree[$row['id']][$k] =  $v;
+				}
+				unset($src_arr[$idx]);
+				$tree[$row['id']]['nodes'] = $this->buildtree($src_arr, $row['id']);
+			}
+    }
+		
+		ksort($tree);
+    return $tree;
 	}
+	
+}
 
 	/*
 		Login Core Controller
@@ -178,41 +216,7 @@
 			$res = $query->result_array();
 			return $res;
 		}	
-
-		function the_org_child_tree($org_id){
-			$child = array();
-			$ci =& get_instance();
-			$query=$ci->db->query('select id from orgs where parent_id='.$org_id)->result_array();
-			if(count($query)){
-				foreach($query as $k=>$v){
-					$child[]=$v['id'];
-					// recursion!! hurrah
-					$gchild = $this->the_org_child_tree($v['id']);
-					// merge the grand children into the children array
-					if( !empty($gchild) ) {
-						$child = array_merge($child, $gchild);
-					}
-				}
-				return $child;
-				}else{
-				return null;
-			}
-		}
-		
-	function buildtree($src_arr, $parent_id = 0, $tree = array()) {
-    foreach($src_arr as $idx => $row){
-			if($row['parent_id'] == $parent_id){
-				foreach($row as $k => $v){
-					$tree[$row['id']][$k] =  $v;
-				}
-				unset($src_arr[$idx]);
-				$tree[$row['id']]['nodes'] = $this->buildtree($src_arr, $row['id']);
-			}
-    }
-		
-		ksort($tree);
-    return $tree;
-	}		
+	
 		
 		function meta($path_url='',$is_return=false){
 			if (!$this->ion_auth->logged_in()) redirect('/acl/logout');
