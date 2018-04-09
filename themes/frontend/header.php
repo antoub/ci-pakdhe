@@ -28,4 +28,8 @@
 		var BASE_URL = '<?php echo base_url();?>';
 		var SITE_URL = '<?php echo site_url();?>';
 	</script>
+	
+	<?php echo (isset($css)) ? $css : '';?>
+	<?php echo (isset($js)) ? $js : '';?>
+	
 </head>
