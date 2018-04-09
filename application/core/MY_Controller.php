@@ -10,7 +10,7 @@
 		function __construct(){
 			parent::__construct();
 			//$this->output->enable_profiler(TRUE);
-
+			
 			$this->CI = & get_instance();
 			$this->MYCFG=$this->CI->config->item('app');			
 			$this->data['MYCFG']=$this->MYCFG;
@@ -41,7 +41,7 @@
 				$this->session->userdata['org_name'] = $org[0]['org_name'];;
 			}		
 		}		
-
+		
 		function __get_org_user($user_id=''){
 			$CI =& get_instance();
 			$CI->db->select('orgs.id as org_id, orgs.name as org_name');
@@ -49,7 +49,7 @@
 			$q = $CI->db->get_where('users_orgs',array('user_id'=>$user_id));
 			return $q->result_array();
 		}		
-
+		
 		function display(){
 			if($this->data['tpl']=='home'){
 				$tpl='frontend/home';
@@ -60,8 +60,6 @@
 			}
 			$this->load->view($tpl,$this->data);
 		}
-		
-		
 
 		function the_org_child_tree($org_id){
 			$child = array();
@@ -83,23 +81,23 @@
 			}
 		}
 		
-	function buildtree($src_arr, $parent_id = 0, $tree = array()) {
-    foreach($src_arr as $idx => $row){
-			if($row['parent_id'] == $parent_id){
-				foreach($row as $k => $v){
-					$tree[$row['id']][$k] =  $v;
+		function buildtree($src_arr, $parent_id = 0, $tree = array()) {
+			foreach($src_arr as $idx => $row){
+				if($row['parent_id'] == $parent_id){
+					foreach($row as $k => $v){
+						$tree[$row['id']][$k] =  $v;
+					}
+					unset($src_arr[$idx]);
+					$tree[$row['id']]['nodes'] = $this->buildtree($src_arr, $row['id']);
 				}
-				unset($src_arr[$idx]);
-				$tree[$row['id']]['nodes'] = $this->buildtree($src_arr, $row['id']);
 			}
-    }
+			
+			ksort($tree);
+			return $tree;
+		}
 		
-		ksort($tree);
-    return $tree;
 	}
 	
-}
-
 	/*
 		Login Core Controller
 	*/
@@ -216,8 +214,7 @@
 			$res = $query->result_array();
 			return $res;
 		}	
-	
-		
+
 		function meta($path_url='',$is_return=false){
 			if (!$this->ion_auth->logged_in()) redirect('/acl/logout');
 			
@@ -256,5 +253,5 @@
 				echo json_encode($array);
 			}
 		}		
-			
-	}		
+		
+	}			
