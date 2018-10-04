@@ -24,5 +24,4 @@ class Home extends MY_Controller {
 		$this->display();		
 	}
 	
-	
 }
