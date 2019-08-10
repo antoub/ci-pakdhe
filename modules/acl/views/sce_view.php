@@ -15,6 +15,7 @@
 			</span>
 			
 		</div>
+		<input type="hidden" name="<?=$csrf['name'];?>" id="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
 		<div class="box-content clearfix" id="fba"></div>
 	</div>
 

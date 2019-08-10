@@ -259,7 +259,7 @@ $(document).ready(function(){
 			$('.mychkbx').removeAttr('disabled', 'disabled');
 		});
 	
-			$('#frm-wil-gp').submit(function(e){
+		$('#frm-wil-gp').submit(function(e){
 			var form_data=$("#frm-wil-gp").serialize();
 			var url_form = ($('#act').val()=='edit') ? SITE_URL+"/acl/groups_menu/act_edit/" : SITE_URL+"/acl/groups_menu/act_add/";				
 				$.ajax({
@@ -268,14 +268,14 @@ $(document).ready(function(){
 						dataType: "json",
 						data: form_data,
 						success: function(data){
-							if(data.success){
-								alert("Selamat,\n\r"+data.msg);
-								$('#myModal').modal('hide');
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
+							if(data.resp){
 								$('#grid_kec').bootstrapTable('refresh');
+								alert("Selamat,\n\r"+data.msg);
 							}else{
 								alert("Ada kesalahan.\n\r"+data.msg);
-								$('#myModal').modal('hide');
 							}
+							$('#myModal').modal('hide');
 						}
 				});
 			e.preventDefault();			
@@ -293,9 +293,10 @@ $(document).ready(function(){
 						type: "POST",
 						url: SITE_URL+"/acl/groups_menu/act_del/",
 						dataType: "json",
-						data: {id:rowSel[0].id},
+						data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
 						success: function(data){
-							if(data.success){
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
+							if(data.resp){
 								alert("Selamat,\n\r"+data.msg);
 								$('#grid_kec').bootstrapTable('refresh');
 							}else{
@@ -309,7 +310,7 @@ $(document).ready(function(){
 			}
 			e.preventDefault();
 		});
-		<?php endif;?>
+	<?php endif;?>
 	
 	
 });

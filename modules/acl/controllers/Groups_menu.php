@@ -37,6 +37,7 @@ class Groups_menu extends MY_Admin {
 	
 	function get_json(){
 		$ret = array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
 			'total'=>0,
 			'rows'=>array()
 		);
@@ -92,7 +93,8 @@ class Groups_menu extends MY_Admin {
 	
 	function act_add(){
 		$ret=array(
-			'success'=>false,
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
+			'resp'=>false,
 			'msg'=>'Gagal Menambah Data'
 		);
 		
@@ -107,17 +109,16 @@ class Groups_menu extends MY_Admin {
 		$this->db->insert('groups_menus', $data); 
 		$last_insert_id=$this->db->insert_id();
 		if($last_insert_id){
-			$ret=array(
-				'success'=>true,
-				'msg'=>'Berhasil Menambah Data'
-			);		
+			$ret['resp']=true;
+			$ret['msg']='Berhasil Menambah Data';
 		}
 		echo json_encode($ret);	
 	}
 	
 	function act_edit(){
 		$ret=array(
-			'success'=>false,
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],
+			'resp'=>false,
 			'msg'=>'Gagal Mengubah Data'
 		);
 		
@@ -130,10 +131,8 @@ class Groups_menu extends MY_Admin {
 		$data['hapus']=(isset($_POST['hapus']))? $_POST['hapus']:0;
 
 		$this->db->update('groups_menus', $data,array('id'=>$_POST['id'])); 
-		$ret=array(
-				'success'=>true,
-				'msg'=>'Berhasil Mengubah Data'
-			);
+		$ret['resp']=true;
+		$ret['msg']='Berhasil Mengubah Data';
 		echo json_encode($ret);		
 	}
 	
@@ -142,13 +141,12 @@ class Groups_menu extends MY_Admin {
 		//delete records
 		$this->db->delete('groups_menus', array('id' => $id));
 		$ret=array(
-			'success'=>true,
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],
+			'resp'=>true,
 			'msg'=>'Berhasil Menghapus Data.'
 		);
 		
 		echo json_encode($ret);
 	}
-
-
 
 }

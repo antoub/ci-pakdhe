@@ -95,6 +95,7 @@ class Menus extends MY_Admin {
 	
 	function act_add(){
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
 			'success'=>false,
 			'msg'=>'Gagal Menambah Data'
 		);
@@ -109,10 +110,8 @@ class Menus extends MY_Admin {
 			$this->db->insert('menus', $data); 
 			$last_insert_id=$this->db->insert_id();
 			if($last_insert_id){
-				$ret=array(
-					'success'=>true,
-					'msg'=>'Berhasil Menambah Data'
-				);		
+				$ret['success']=true;
+				$ret['msg']='Berhasil Menambah Data';
 			}
 		}
 		echo json_encode($ret);	
@@ -120,6 +119,7 @@ class Menus extends MY_Admin {
 	
 	function act_edit(){
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
 			'success'=>false,
 			'msg'=>'Gagal Mengubah Data'
 		);
@@ -133,10 +133,8 @@ class Menus extends MY_Admin {
 		$data['flag']=$_POST['flag'];
 
 		$this->db->update('menus', $data,array('id'=>$_POST['id'])); 
-		$ret=array(
-				'success'=>true,
-				'msg'=>'Berhasil Mengubah Data'
-			);
+		$ret['success']=true;
+		$ret['msg']='Berhasil Mengubah Data';
 		echo json_encode($ret);		
 	}
 	
@@ -148,6 +146,7 @@ class Menus extends MY_Admin {
 		//delete records
 		$this->db->delete('menus', array('id' => $id));
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
 			'success'=>true,
 			'msg'=>'Berhasil Menghapus Data.'
 		);
@@ -155,5 +154,4 @@ class Menus extends MY_Admin {
 		echo json_encode($ret);
 	}
 	
-
 }

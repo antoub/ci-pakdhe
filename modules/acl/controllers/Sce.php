@@ -6,7 +6,7 @@ class Sce extends MY_Admin {
 	
 	function __construct(){
 		parent::__construct();
-		$this->data = $this->meta('acl/sce/',true);
+		//$this->data = $this->meta('acl/sce/',true);
 		
 		$this->load->helper('file');
 		$this->data['tpl']='single';
@@ -15,6 +15,9 @@ class Sce extends MY_Admin {
 	function index(){
 		$meta = $this->meta('acl/sce/',true);
 		$this->data['auth_meta']=$meta['act'];
+		$this->data['icon']=$meta['icon'];
+		$this->data['title']=$meta['title'];
+		
 		$this->data['content']=$this->load->view('sce_view',$this->data,true);
 		$this->display($this->data);
 	}

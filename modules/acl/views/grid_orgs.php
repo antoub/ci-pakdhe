@@ -184,21 +184,21 @@
 		$('#btn-remove').click(function(){
 				var r = confirm("Apakah anda yakin akan menghapus data tersebut !");
 				if (r == true) {
-					selections = getRowSelections();
-					var mydata='id='+selections[0].id;
+					var rowSel=getRowSelections();
 					
 					$.ajax({
 						type: "POST",
 						url: SITE_URL+'/acl/orgs/del/',
 						dataType: "json",
-						data: mydata,
+						data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
 						success: function(data){
-							if(data.success){
-								alert("Selamat,\n\r"+data.message);
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);							
+							if(data.resp){
+								alert("Selamat,\n\r"+data.msg);
 								//location.reload();						
 								$('#grid_org').bootstrapTable('refresh');
 							}else{
-								alert("Ada kesalahan.\n\r"+data.message);
+								alert("Ada kesalahan.\n\r"+data.msg);
 							}
 						}
 					});
@@ -217,14 +217,15 @@
 					dataType: "json",
 					data: form_data,
 					success: function(data){
+						$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 						if(data.resp){
-							alert("Selamat,\n\r"+data.message);
+							alert("Selamat,\n\r"+data.msg);
 							$('#mdl_org').modal('hide');
 							//location.reload();
 							$('#grid_org').bootstrapTable('refresh');
 							
 						}else{
-							alert("Ada kesalahan.\n\r"+data.message);
+							alert("Ada kesalahan.\n\r"+data.msg);
 							$('#mdl_org').modal('hide');
 						}
 					}

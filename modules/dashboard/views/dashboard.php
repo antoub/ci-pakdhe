@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-md-6">
 			<div class="panel">
-				<div class="panel-body" style="border:1px solid #AAA;">
+				<div class="panel-body">
 					<div class="media">
 						<div class="media-left media-top">
 							<img class="media-object" src="<?=base_url('assets/image/'.$this->MYCFG['logo']);?>" alt="<?=$this->MYCFG['logo'];?>" width="120px"/>

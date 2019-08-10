@@ -15,6 +15,10 @@
 			$this->MYCFG=$this->CI->config->item('app');			
 			$this->data['MYCFG']=$this->MYCFG;
 			
+			//generate csrf
+			$this->data['csrf']['name']=$this->CI->security->get_csrf_token_name();
+			$this->data['csrf']['hash']=$this->CI->security->get_csrf_hash();
+			
 			$this->data['content']=(isset($this->data['content'])) ? $this->data['content'] : 'Content Goes Here';
 		}
 		

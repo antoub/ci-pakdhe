@@ -24,6 +24,7 @@ class Groups extends MY_Admin {
 
 	function get_json(){
 		$ret = array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],
 			'total'=>0,
 			'rows'=>array()
 		);
@@ -70,6 +71,7 @@ class Groups extends MY_Admin {
 	
 	function act_add(){
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
 			'success'=>false,
 			'msg'=>'Gagal Menambah Data'
 		);
@@ -79,10 +81,8 @@ class Groups extends MY_Admin {
 		$this->db->insert('groups', $data); 
 		$last_insert_id=$this->db->insert_id();
 		if($last_insert_id){
-			$ret=array(
-				'success'=>true,
-				'msg'=>'Berhasil Menambah Data'
-			);		
+			$ret['success']=true;
+			$ret['msg']='Berhasil Menambah Data';
 		}
 		
 		header('Content-Type: application/json');		
@@ -91,6 +91,7 @@ class Groups extends MY_Admin {
 	
 	function act_edit(){
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],
 			'success'=>false,
 			'msg'=>'Gagal Mengubah Data'
 		);
@@ -98,10 +99,8 @@ class Groups extends MY_Admin {
 		$data['name']=$_POST['name'];
 		$data['description']=$_POST['description'];
 		$this->db->update('groups', $data,array('id'=>$_POST['id'])); 
-		$ret=array(
-				'success'=>true,
-				'msg'=>'Berhasil Mengubah Data'
-			);
+		$ret['success']=true;
+		$ret['msg']='Berhasil Mengubah Data';
 
 		header('Content-Type: application/json');
 		echo json_encode($ret);
@@ -112,6 +111,7 @@ class Groups extends MY_Admin {
 		//delete records
 		$this->db->delete('groups', array('id' => $id));
 		$ret=array(
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],
 			'success'=>true,
 			'msg'=>'Berhasil Menghapus Data.'
 		);

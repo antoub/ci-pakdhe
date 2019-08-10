@@ -151,6 +151,8 @@ $(document).ready(function(){
 								remark:nilai.remark, 
 								list_order:nilai.list_order, 
 								flag:nilai.flag, 
+								tags: [nilai.list_order],
+								
 								selectable: true
 							});
 						});
@@ -169,12 +171,12 @@ $(document).ready(function(){
 						remark:val.remark, 
 						list_order:val.list_order, 
 						flag:val.flag, 
+						tags: [val.list_order],
+						
 						selectable: true,
 						nodes:cnodes
 					});
 				});
-				
-				console.log(treeData);
 				
 				$('#tree_category').treeview({
 					expandIcon: 'fa fa-plus',
@@ -256,6 +258,7 @@ $(document).ready(function(){
 			data: formData,
 			dataType: "json",
 			success: function(data){
+				$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 				if(data.resp){
 					alert(data.msg);
 				}else{
@@ -286,8 +289,9 @@ $(document).ready(function(){
 				type: "POST",
 				url: SITE_URL+'/acl/menus/act_del/',
 				dataType: "json",
-				data: {id:$('#id').val()},
+				data: {id:$('#id').val(),<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
 				success: function(data){
+					$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 					if(data.success){
 						alert("Selamat,\n\r"+data.msg);
 						getCat();

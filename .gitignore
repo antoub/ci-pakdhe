@@ -7,4 +7,3 @@ application/logs/*
 !application/logs/.htaccess
 
 application/config/database.php
-assets/modules/adminlte-old/*

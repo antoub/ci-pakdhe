@@ -225,6 +225,7 @@
 				}
 		});
 	
+	<?php if($auth_meta['add']):?>	
 		$('#btn-add').click(function(e){
 			$('#frm-org-mdl').trigger("reset");
 
@@ -235,7 +236,9 @@
 
 			$('#mdl_org').modal('show');
 		});
+	<?php endif;?>
 	
+	<?php if($auth_meta['edit']):?>
 		$('#btn-edit').click(function(e){
 			$('.modal-header').removeClass('bg-blue');
 			$('.modal-header').addClass('bg-teal');
@@ -260,33 +263,10 @@
 		
 			$('#mdl_org').modal('show');
 		});
-		
-		$('#btn-remove').click(function(){
-				var r = confirm("Apakah anda yakin akan menghapus data tersebut !");
-				if (r == true) {
-					selections = getRowSelections();
-					var mydata='id='+selections[0].id;
-					
-					$.ajax({
-						type: "POST",
-						url: SITE_URL+'/acl/users/del/',
-						dataType: "json",
-						data: mydata,
-						success: function(data){
-							if(data.resp){
-								alert("Selamat,\n\r"+data.message);
-								//location.reload();						
-								$('#grid_org').bootstrapTable('refresh');
-							}else{
-								alert("Ada kesalahan.\n\r"+data.message);
-							}
-						}
-					});
-				} else {
-				
-				}			
-		});
+	<?php endif;?>
 	
+	
+	<?php if(($auth_meta['add'])||($auth_meta['edit'])):?>	
 		$('#frm-org-mdl').submit(function(e){
 			var form_data=$("#frm-org-mdl").serialize();
 			var url_form = ($('#act').val()=='edit') ? SITE_URL+"/acl/users/edit/" : SITE_URL+"/acl/users/add/";
@@ -297,21 +277,47 @@
 					dataType: "json",
 					data: form_data,
 					success: function(data){
-						// alert(data);
+						$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);						
 						if(data.resp){
-							alert("Selamat,\n\r"+data.message);
-							$('#mdl_org').modal('hide');
-							//location.reload();
 							$('#grid_org').bootstrapTable('refresh');
-							
+							alert("Selamat,\n\r"+data.msg);
 						}else{
-							alert("Ada kesalahan.\n\r"+data.message);
-							// $('#mdl_org').modal('hide');
+							alert("Ada kesalahan.\n\r"+data.msg);
 						}
+						$('#mdl_org').modal('hide');						
 					}
 			});
 			e.preventDefault();			
 		});
+	<?php endif;?>
+	
+	<?php if($auth_meta['del']):?>			
+		$('#btn-remove').click(function(){
+				var r = confirm("Apakah anda yakin akan menghapus data tersebut !");
+				if (r == true) {
+					var rowSel = getRowSelections();
+					
+					$.ajax({
+						type: "POST",
+						url: SITE_URL+'/acl/users/del/',
+						dataType: "json",
+						data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},						
+						success: function(data){
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);							
+							if(data.resp){
+								alert("Selamat,\n\r"+data.msg);
+								//location.reload();						
+								$('#grid_org').bootstrapTable('refresh');
+							}else{
+								alert("Ada kesalahan.\n\r"+data.msg);
+							}
+						}
+					});
+				} else {
+				
+				}			
+		});
+	<?php endif;?>	
 	
 
 	});

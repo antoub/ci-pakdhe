@@ -132,12 +132,13 @@ class Orgs extends MY_Admin {
 		$this->db->where('id', $data['id']);
 		$this->db->update($this->data['table_name'], $data);
 		$last_insert_id=$data['id'];
+		$mydata[$this->data['csrf']['name']]=$this->data['csrf']['hash'];
 		if($last_insert_id){
 			$mydata['resp']=true;
-			$mydata['message']='berhasil mengubah data.';
+			$mydata['msg']='berhasil mengubah data.';
 		}else{
 			$mydata['resp']=false;
-			$mydata['message']='gagal mengubah data.';		
+			$mydata['msg']='gagal mengubah data.';		
 		}
 		header('Content-Type: application/json');
 		echo json_encode($mydata);
@@ -165,25 +166,25 @@ class Orgs extends MY_Admin {
 
 		$this->db->insert($this->data['table_name'], $data);
 		$last_insert_id=$this->db->insert_id();
+		$mydata[$this->data['csrf']['name']]=$this->data['csrf']['hash'];
 		if($last_insert_id){
 			$mydata['resp']=true;
-			$mydata['message']='berhasil menambah data.';
+			$mydata['msg']='berhasil menambah data.';
 		}else{
 			$mydata['resp']=false;
-			$mydata['message']='gagal menambah data.';		
+			$mydata['msg']='gagal menambah data.';		
 		}
 		header('Content-Type: application/json');
 		echo json_encode($mydata);		
 	}
 
-	
-	function remove(){
+	function del(){
 		$resp=array(
-			'success'=>true,
-			'message'=>'Berhasil Menghapus'
+			$this->data['csrf']['name']=>$this->data['csrf']['hash'],		
+			'resp'=>true,
+			'msg'=>'Berhasil Menghapus'
 		);
 		$this->db->delete($this->data['table_name'], array('id' => $_POST['id']));
-		
 		
 		header('Content-Type: application/json');
 		echo json_encode($resp);

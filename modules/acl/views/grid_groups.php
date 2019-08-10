@@ -172,6 +172,7 @@
 						dataType: "json",
 						data: form_data,
 						success: function(data){
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 							if(data.success){
 								alert("Selamat,\n\r"+data.msg);
 								$('#myModal').modal('hide');
@@ -200,10 +201,11 @@
 						type: "POST",
 						url: SITE_URL+"/acl/groups/act_del/",
 						dataType: "json",
-						data: {id:rowSel[0].id},
+						data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
 						success: function(data){
+							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 							if(data.success){
-								alert("Selamat,\n\r"+data.msg);
+								alert("Selamat,\n\r"+data.msg);	
 								$('#grid_kec').bootstrapTable('refresh');
 							}else{
 								alert("Ada kesalahan.\n\r"+data.msg);
