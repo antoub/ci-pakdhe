@@ -242,6 +242,7 @@
 			$query = $this->db->query($sql);
 			$hasil = $query->result_array();
 			if($hasil){
+				$array['path']=$hasil[0]['path'];
 				$array['icon']=$hasil[0]['icon'];
 				$array['title']=$hasil[0]['name'];
 				$array['act']['access']=($hasil[0]['akses']) ? 1 : 0;
