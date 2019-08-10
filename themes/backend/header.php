@@ -22,7 +22,7 @@
 	
 	<?php echo js_asset('jquery.min.js');?>
 	<?php echo js_asset('bootstrap.min.js','bootstrap');?>
-	<?php echo js_asset('app.min.js','adminlte');?>
+	<?php echo js_asset('adminlte.min.js','adminlte');?>
 	<?php echo js_asset('myloader.js');?>
 	
 	<style>

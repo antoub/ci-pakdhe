@@ -12,7 +12,7 @@
 					</p>
         </div>
       </div>
-			<ul class="sidebar-menu">
+			<ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">MAIN MENU</li>
 				<?php foreach($menus as $k=>$v):?>
 					<?php if((isset($v['children']))&&(count($v['children']))):?>
