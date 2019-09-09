@@ -128,6 +128,12 @@ $(document).ready(function(){
 		$('#btn-del').attr('disabled',true);
 	}
 	
+	function dynamicSort(property) {
+		return function(a, b) {
+				 return (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+		 }
+	}
+	
 	function getCat(){
 		var tmp=[];
 		$.ajax({
@@ -149,13 +155,14 @@ $(document).ready(function(){
 								name:nilai.name, 
 								path:nilai.path, 
 								remark:nilai.remark, 
-								list_order:nilai.list_order, 
+								list_order:parseInt(nilai.list_order), 
 								flag:nilai.flag, 
 								tags: [nilai.list_order],
 								
 								selectable: true
 							});
 						});
+						cnodes.sort(dynamicSort('list_order'));						
 					}else{
 						//the parents
 						
@@ -169,14 +176,15 @@ $(document).ready(function(){
 						name:val.name,
 						path:val.path,
 						remark:val.remark, 
-						list_order:val.list_order, 
+						list_order:parseInt(val.list_order), 
 						flag:val.flag, 
 						tags: [val.list_order],
-						
 						selectable: true,
 						nodes:cnodes
 					});
 				});
+				
+				treeData.sort(dynamicSort('list_order'));
 				
 				$('#tree_category').treeview({
 					expandIcon: 'fa fa-plus',
