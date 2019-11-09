@@ -14,15 +14,21 @@ class Acl extends MY_Controller {
 			if((isset($_POST['user_name'])) && (isset($_POST['user_password']))){
 				$ok = $this->ion_auth->login($_POST['user_name'], $_POST['user_password']);
 				if($ok){
-					$res=array('result'=>true,'msg'=>"Login Berhasil.\r\nSilahkan mengelola aplikasi ini melalui menu Dashboard.",'url'=>site_url('dashboard'));
+					$res=array(
+						$this->data['csrf']['name']=>$this->data['csrf']['hash'],
+						'result'=>true,
+						'msg'=>"Login Berhasil.\r\nSilahkan mengelola aplikasi ini melalui menu Dashboard.",'url'=>site_url('dashboard')
+					);
 				}else{
 					$res=array(
+						$this->data['csrf']['name']=>$this->data['csrf']['hash'],
 						'result'=>false,
 						'msg'=>"Login Gagal.\r\nUsername/Password Salah.\n\rSilahkan ulangi lagi."
 						);
 				}
 			}else{			
 				$res=array(
+					$this->data['csrf']['name']=>$this->data['csrf']['hash'],
 					'result'=>false,
 					'msg'=>"Login Gagal.\r\nUsername/Password belum terisi.\n\rSilahkan ulangi lagi."
 				);

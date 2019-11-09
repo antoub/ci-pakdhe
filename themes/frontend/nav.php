@@ -80,7 +80,8 @@
 					data: form_data,
 					dataType: 'json',
 					success: function(ret){
-						console.log(ret);
+						$(".<?=@config_item('csrf_token_name');?>").val(ret.<?=@config_item('csrf_token_name');?>);
+						
 						if(ret.result){
 							window.location.replace(ret.url);
 						}else{
