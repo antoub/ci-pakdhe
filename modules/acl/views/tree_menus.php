@@ -138,6 +138,7 @@ $(document).ready(function(){
 		$('#id').val('');
 		$('#act').val('add');
 		$('#btn-del').attr('disabled',true);
+		$('#myicon').iconpicker('reset');		
 	}
 	
 	function dynamicSort(property) {
