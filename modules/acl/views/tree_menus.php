@@ -13,6 +13,18 @@
 					<i class="<?php echo $icon;?>"></i>&nbsp;List <?php echo $title;?>
 					<span class="badge bg-green pull-right" id="total_cat"> Menus</span>
 				</div>
+				<div class="panel-footer bg-dark text-white clearfix">
+					<div class="row">
+						<div class="col-md-4">
+							<button class="btn btn-primary btn-sm bg-blue" name="btn-mytree" id="btn-mytree">
+								<i class="fa fa-th-list"></i>&nbsp;Expand/Collapse All
+							</button>
+						</div>
+						<div class="col-md-8">
+							<p class="small text-justify">Pilih salah satu <strong>item</strong> dibawah untuk diedit, atau tekan tombol <span class="label label-success bg-green">Reset Form</span> untuk menambahkan <strong>item</strong> baru.</p>
+						</div>
+					</div>
+				</div>				
 				<div id="tree_category" class="treeview text-black"></div>
 				<div class="panel-footer bg-dark text-white clearfix">
 					<div class="row">
