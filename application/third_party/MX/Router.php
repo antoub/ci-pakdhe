@@ -236,7 +236,9 @@ class MX_Router extends CI_Router
 	public function set_class($class)
 	{
 		$suffix = $this->config->item('controller_suffix');
-		if (strpos($class, $suffix) === FALSE)
+		//if (strpos($class, $suffix) === FALSE) // kode lama
+		if( $suffix && strpos($class, $suffix) === FALSE) //kode perubahan yang benar
+		
 		{
 			$class .= $suffix;
 		}
