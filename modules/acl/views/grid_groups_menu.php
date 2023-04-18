@@ -188,7 +188,7 @@ $(document).ready(function(){
 	<?php if($auth_meta['add']):?>
 		$('#btn-add').click(function(e){
 			$('#frm-wil-gp').trigger("reset");
-    	$('.modal-header').removeClass().addClass("modal-header").addClass("mybg-primary");
+    	$('.modal-header').removeClass().addClass("modal-header").addClass("bg-primary");
 			$('#title_act').html('<i class="fa fa-plus-circle"></i>&nbsp;Form Add');
 			$('#act').val('add');
 			
@@ -210,7 +210,7 @@ $(document).ready(function(){
 			var rowSel=getRowSelections();
 			if(rowSel.length){
 				$('#frm-wil-gp').trigger("reset");
-				$('.modal-header').removeClass().addClass("modal-header").addClass("mybg-info");
+				$('.modal-header').removeClass().addClass("modal-header").addClass("bg-info");
 				$('#title_act').html('<i class="fa fa-pencil"></i>&nbsp;Form Edit');
 				$('#act').val('edit');
 				

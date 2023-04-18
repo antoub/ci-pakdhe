@@ -229,8 +229,8 @@
 		$('#btn-add').click(function(e){
 			$('#frm-org-mdl').trigger("reset");
 
-			$('.modal-header').removeClass('bg-teal');
-			$('.modal-header').addClass('bg-blue');
+			$('.modal-header').removeClass('bg-info');
+			$('.modal-header').addClass('bg-primary');
 			$('#title_act').html('<i class="fa fa-plus-circle"></i>&nbsp;Add');
 			$('#act').val('add');
 
@@ -240,8 +240,8 @@
 	
 	<?php if($auth_meta['edit']):?>
 		$('#btn-edit').click(function(e){
-			$('.modal-header').removeClass('bg-blue');
-			$('.modal-header').addClass('bg-teal');
+			$('.modal-header').removeClass('bg-primary');
+			$('.modal-header').addClass('bg-info');
 			$('#title_act').html('<i class="fa fa-pencil"></i>&nbsp;Edit');
 			$('#act').val('edit');
 
