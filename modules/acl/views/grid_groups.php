@@ -47,34 +47,36 @@
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			
-        <h4 class="modal-title"><span id="title_act"></span></h4>
-      </div>
-			<form role="form" id="frm-wil-gp" name="frm-wil-gp" method="POST" action="#">
-      <div class="modal-body">
+      	<div class="modal-header bg-primary">
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			
+        	<h4 class="modal-title"><span id="title_act"></span></h4>
+      	</div>
+		<form role="form" id="frm-wil-gp" name="frm-wil-gp" method="POST" action="#">
+      		<div class="modal-body">
 				<input type="hidden" name="act" id="act" value="" />
 				<input type="hidden" id="id" name="id" value="" />
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Nama Group</label>
 								<input type="text" id="name" name="name" class="form-control input-sm" value="" />
 							</div>
 						</div>
-						<div class="col-md-6">
+					</div>
+					<div class="row">
+						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Deskripsi</label>
-								<input type="text" id="description" name="description" class="form-control input-sm" value="" />
+								<textarea id="description" name="description"  rows="5" class="form-control input-sm"></textarea>
 							</div>
 						</div>
 					</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>			
-        <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
-      </div>
-			</form>
+      		</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>			
+				<button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
+			</div>
+		</form>
     </div>
   </div>
 </div>
@@ -126,7 +128,7 @@
 	<?php if($auth_meta['add']):?>
 		$('#btn-add').click(function(e){
 			$('#frm-wil-gp').trigger("reset");
-    	$('.modal-header').removeClass().addClass("modal-header").addClass("mybg-primary");
+    	$('.modal-header').removeClass().addClass("modal-header").addClass("bg-primary");
 			$('#title_act').html('<i class="fa fa-plus-circle"></i>&nbsp;Form Add');
 			$('#act').val('add');
 			
@@ -145,7 +147,7 @@
 			var rowSel=getRowSelections();
 			if(rowSel.length){
 				$('#frm-wil-gp').trigger("reset");
-				$('.modal-header').removeClass().addClass("modal-header").addClass("mybg-info");
+				$('.modal-header').removeClass().addClass("modal-header").addClass("bg-info");
 				$('#title_act').html('<i class="fa fa-pencil"></i>&nbsp;Form Edit');
 				$('#act').val('edit');
 				
