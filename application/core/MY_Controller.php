@@ -106,6 +106,7 @@
 		Login Core Controller
 	*/
 	class MY_Admin extends MY_Controller {
+		var $path_theme;
 		
 		public function __construct(){
 			parent::__construct();

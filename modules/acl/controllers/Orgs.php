@@ -59,7 +59,7 @@ class Orgs extends MY_Admin {
 		if($_SESSION['user_group']==3){
 			//group camat
 			//get all child orgs
-			$ls_child = the_org_child($_SESSION['user_org']);
+			$ls_child = the_org_child_three($_SESSION['user_org']);
 			if(count($ls_child)){
 				//foreach($ls_child as $k=>$v){
 					//$this->db->or_where('org_id',$v);
