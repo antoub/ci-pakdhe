@@ -11,8 +11,12 @@ class Orgs extends MY_Admin {
 		$this->data['title']='Organisasi';
 		$this->data['table_name'] = 'orgs';
 		$this->data['content']='';
-		$this->data['css']=css_asset('bootstrap-table.min.css','bootstrap-table');
-		$this->data['js']=js_asset('bootstrap-table.min.js','bootstrap-table');
+		$this->data['css']=css_asset('sweetalert.css','sweetalert');
+		$this->data['css'].=css_asset('bootstrap-table.min.css','bootstrap-table');
+
+		$this->data['js']=js_asset('sweetalert.min.js','sweetalert');
+		$this->data['js'].=js_asset('bootstrap-table.min.js','bootstrap-table');
+
 	}
 	
 	function index(){

@@ -12,28 +12,31 @@
 		</div>
 		<div id="toolbar">
 			<?php if($auth_meta['add']):?>
-			<button id="btn-add" name="btn-add" class="btn btn-primary btn-sm" disabled>
-				<i class="fa fa-plus-circle"></i>&nbsp;Add Child
-			</button>
+				<button id="btn-add" name="btn-add" class="btn btn-primary btn-sm" disabled>
+					<i class="fa fa-plus-circle"></i>&nbsp;Add Child
+				</button>
 			<?php endif;?>
 			<?php if($auth_meta['edit']):?>
-			<button id="btn-edit" name="btn-edit" class="btn btn-info btn-sm" disabled><i class="fa fa-pencil"></i> Edit</button>
+				<button id="btn-edit" name="btn-edit" class="btn btn-info btn-sm" disabled>
+					<i class="fa fa-pencil"></i> Edit
+				</button>
 			<?php endif;?>
 			<?php if($auth_meta['del']):?>
-			<button id="btn-remove" name="btn-remove" class="btn btn-danger btn-sm" disabled><i class="fa fa-remove"></i> Delete</button>
+				<button id="btn-remove" name="btn-remove" class="btn btn-danger btn-sm" disabled>
+					<i class="fa fa-remove"></i> Delete
+				</button>
 			<?php endif;?>
 			
 		</div>
 		<table id="grid_org"
-					data-show-refresh="true"
-          data-show-export="true"
-          data-classes="table table-no-bordered table-responsive"
-					
-          data-pagination="true"
-          data-id-field="id"
-          data-page-list="[10, 25, 50, 100, ALL]"
-          data-side-pagination="server"
-					data-response-handler="responseHandler">
+			data-show-refresh="true"
+          	data-show-export="true"
+          	data-classes="table table-no-bordered table-responsive"		
+          	data-pagination="true"
+          	data-id-field="id"
+          	data-page-list="[10, 25, 50, 100, ALL]"
+          	data-side-pagination="server"
+			data-response-handler="responseHandler">
 		</table>
 	</div>
 </section>
@@ -101,15 +104,15 @@
   };
 	
 	function enable_btn(){
-   $('#btn-add').prop("disabled",false);
-   $('#btn-edit').prop("disabled",false);
-   $('#btn-remove').prop("disabled",false);
+		$('#btn-add').prop("disabled",false);
+		$('#btn-edit').prop("disabled",false);
+		$('#btn-remove').prop("disabled",false);
 	};
 	
 	function disable_btn(){
-   $('#btn-add').prop("disabled",true);
-   $('#btn-edit').prop("disabled",true);
-   $('#btn-remove').prop("disabled",true);
+		$('#btn-add').prop("disabled",true);
+		$('#btn-edit').prop("disabled",true);
+		$('#btn-remove').prop("disabled",true);
 	}
 	
 	$(document).ready(function(){		
@@ -119,8 +122,6 @@
 				search:true,
 				url: SITE_URL+'/acl/orgs/get_json/',
 				singleSelect:true,
-				//pageSize: 10,
-				//pageList:"[5, 10, 20, 50, 100, 200]" ,
 				columns: [
 					{
 						field: 'state',
@@ -150,12 +151,13 @@
 					disable_btn();
 				}
 		});
-	
+
+	<?php if($auth_meta['add']):?>
 		$('#btn-add').click(function(e){
 			$('#frm-org-mdl').trigger("reset");
 
-			$('.modal-header').removeClass('bg-teal');
-			$('.modal-header').addClass('bg-blue');
+			$('.modal-header').removeClass('bg-info');
+			$('.modal-header').addClass('bg-primary');
 			$('#title_act').html('<i class="fa fa-plus-circle"></i>&nbsp;Add');
 			$('#act').val('add');
 			//populate data
@@ -167,10 +169,12 @@
 
 			$('#mdl_org').modal('show');
 		});
-	
+	<?php endif;?>
+
+	<?php if($auth_meta['edit']):?>
 		$('#btn-edit').click(function(e){
-			$('.modal-header').removeClass('bg-blue');
-			$('.modal-header').addClass('bg-teal');
+			$('.modal-header').removeClass('bg-primary');
+			$('.modal-header').addClass('bg-info');
 			$('#title_act').html('<i class="fa fa-pencil"></i>&nbsp;Edit');
 			$('#act').val('edit');
 			//populate data
@@ -182,12 +186,19 @@
 			
 			$('#mdl_org').modal('show');
 		});
-		
+	<?php endif;?>
+
+	<?php if($auth_meta['del']):?>
 		$('#btn-remove').click(function(){
-				var r = confirm("Apakah anda yakin akan menghapus data tersebut !");
-				if (r == true) {
+			swal({
+				title: 'Apakah anda yakin akan menghapus ?',
+				text: "Data yang terhapus tidak dapat dikembalikan !",
+				icon: 'warning',
+				buttons: true,
+				dangerMode: true
+			}).then(function(isConfirm) {
+				if (isConfirm) {
 					var rowSel=getRowSelections();
-					
 					$.ajax({
 						type: "POST",
 						url: SITE_URL+'/acl/orgs/del/',
@@ -196,19 +207,20 @@
 						success: function(data){
 							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);							
 							if(data.resp){
-								alert("Selamat,\n\r"+data.msg);
-								//location.reload();						
+								swal('Success', 'Selamat.\n\r' + data.msg, 'success');
 								$('#grid_org').bootstrapTable('refresh');
 							}else{
-								alert("Ada kesalahan.\n\r"+data.msg);
+								swal('Warning', 'Ada Kesalahan.\n\r' + data.msg, 'success');
 							}
 						}
 					});
-				} else {
-				
-				}			
+				}
+			});
+						
 		});
-	
+	<?php endif;?>
+
+	<?php if(($auth_meta['add'])||($auth_meta['edit'])):?>
 		$('#frm-org-mdl').submit(function(e){
 			var form_data=$("#frm-org-mdl").serialize();
 			var url_form = ($('#act').val()=='edit') ? SITE_URL+"/acl/orgs/edit/" : SITE_URL+"/acl/orgs/add/";
@@ -221,20 +233,19 @@
 					success: function(data){
 						$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 						if(data.resp){
-							alert("Selamat,\n\r"+data.msg);
+							swal('Success', 'Selamat.\n\r' + data.msg, 'success');
 							$('#mdl_org').modal('hide');
-							//location.reload();
 							$('#grid_org').bootstrapTable('refresh');
 							
 						}else{
-							alert("Ada kesalahan.\n\r"+data.msg);
+							swal('Warning', 'Ada kesalahan.\n\r' + data.msg, 'warning');
 							$('#mdl_org').modal('hide');
 						}
 					}
 			});
 			e.preventDefault();			
 		});
-	
+	<?php endif;?>
 
 	});
 </script>

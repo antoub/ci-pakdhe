@@ -51,7 +51,7 @@
         	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>			
         	<h4 class="modal-title"><span id="title_act"></span></h4>
       	</div>
-		<form role="form" id="frm-wil-gp" name="frm-wil-gp" method="POST" action="#">
+		<form role="form" id="thefrm" name="thefrm" method="POST" action="#">
       		<div class="modal-body">
 				<input type="hidden" name="act" id="act" value="" />
 				<input type="hidden" id="id" name="id" value="" />
@@ -144,7 +144,7 @@
 	
 	<?php if($auth_meta['add']):?>
 		$('#btn-add').click(function(e){
-			$('#frm-wil-gp').trigger("reset");
+			$('#thefrm').trigger("reset");
     	$('.modal-header').removeClass().addClass("modal-header").addClass("bg-primary");
 			$('#title_act').html('<i class="fa fa-plus-circle"></i>&nbsp;Form Add');
 			$('#act').val('add');
@@ -159,11 +159,10 @@
 	<?php endif;?>
 	
 	<?php if($auth_meta['edit']):?>
-
 		$('#btn-edit').click(function(e){
 			var rowSel=getRowSelections();
 			if(rowSel.length){
-				$('#frm-wil-gp').trigger("reset");
+				$('#thefrm').trigger("reset");
 				$('.modal-header').removeClass().addClass("modal-header").addClass("bg-info");
 				$('#title_act').html('<i class="fa fa-pencil"></i>&nbsp;Form Edit');
 				$('#act').val('edit');
@@ -182,8 +181,8 @@
 	<?php endif;?>
 	
 	<?php if(($auth_meta['add'])||($auth_meta['edit'])):?>
-			$('#frm-wil-gp').submit(function(e){
-			var form_data=$("#frm-wil-gp").serialize();
+			$('#thefrm').submit(function(e){
+			var form_data=$("#thefrm").serialize();
 			var url_form = ($('#act').val()=='edit') ? SITE_URL+"/acl/groups/act_edit/" : SITE_URL+"/acl/groups/act_add/";				
 				$.ajax({
 						type: "POST",
@@ -234,11 +233,11 @@
 								if(data.success){
 									swal('Success', 'Selamat.\n\r' + data.msg, 'success');
 									$('#thegrid').bootstrapTable('refresh');
-									}else{
-										swal('Warning', 'Ada Kesalahan.\n\r' + data.msg, 'success');
-									}
+								}else{
+									swal('Warning', 'Ada Kesalahan.\n\r' + data.msg, 'success');
 								}
-							});
+							}
+						});
 
 					}else{
 						swal('Warning', 'Silahkan memilih record yang akan diedit terlebih dulu', 'warning');
