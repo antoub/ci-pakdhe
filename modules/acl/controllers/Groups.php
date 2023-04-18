@@ -8,8 +8,11 @@ class Groups extends MY_Admin {
 	}
 
 	function index() {
-		$this->data['css']=css_asset('bootstrap-table.min.css','bootstrap-table');		
-		$this->data['js']=js_asset('bootstrap-table.min.js','bootstrap-table');
+		$this->data['css']=css_asset('sweetalert.css','sweetalert');
+		$this->data['css'].=css_asset('bootstrap-table.min.css','bootstrap-table');
+
+		$this->data['js']=js_asset('sweetalert.min.js','sweetalert');
+		$this->data['js'].=js_asset('bootstrap-table.min.js','bootstrap-table');
 		
 		$meta = $this->meta('acl/groups/',true);
 		$this->data['auth_meta']=$meta['act'];

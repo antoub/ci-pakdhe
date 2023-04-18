@@ -14,22 +14,22 @@
 			</div>
 		<div id="toolbar">
 			<?php if($auth_meta['add']):?>
-				<a id="btn-add" class="btn btn-primary btn-sm" href="<?php echo site_url('acl/groups/add/');?>" alt="ADD">
+				<button id="btn-add" class="btn btn-primary btn-sm" href="<?php echo site_url('acl/groups/add/');?>" alt="ADD">
 					<i class="fa fa-plus-circle"></i>&nbsp;Add
-				</a>
+				</button>
 			<?php endif;?>
 			<?php if($auth_meta['edit']):?>
-				<a id="btn-edit" class="btn btn-info btn-sm" href="<?php echo site_url('acl/groups/edit/');?>" alt="Edit">
+				<button id="btn-edit" class="btn btn-info btn-sm" href="<?php echo site_url('acl/groups/edit/');?>" alt="Edit" disabled>
 					<i class="fa fa-pencil"></i>&nbsp;Edit
-				</a>
+				</button>
 			<?php endif;?>
 			<?php if($auth_meta['del']):?>
-				<a id="btn-del" class="btn btn-danger btn-sm" href="<?php echo site_url('acl/groups/del/');?>" alt="Del">
+				<button id="btn-del" class="btn btn-danger btn-sm" href="<?php echo site_url('acl/groups/del/');?>" alt="Del" disabled>
 					<i class="fa fa-trash-o"></i>&nbsp;Del
-				</a>
+				</button>
 			<?php endif;?>
 		</div>
-			<table id="grid_kec"
+			<table id="thegrid"
 					data-show-refresh="true"
           data-classes="table table-no-bordered"
  					
@@ -85,14 +85,24 @@
 	var selections = [];
   
 	function getRowSelections() {
-    return $.map($('#grid_kec').bootstrapTable('getSelections'), function (row) {
+    	return $.map($('#thegrid').bootstrapTable('getSelections'), function (row) {
 			return row;
 		});
-  };
+ 	 };
+
+	function enable_btn() {
+		$('#btn-edit').prop("disabled", false);
+		$('#btn-del').prop("disabled", false);
+	};
+
+	function disable_btn() {
+		$('#btn-edit').prop("disabled", true);
+		$('#btn-del').prop("disabled", true);
+	}
 
 	$(document).ready(function(){		
 
-	$('#grid_kec').bootstrapTable({
+	$('#thegrid').bootstrapTable({
 		toolbar:'#toolbar',
 		pagination:true,
 		search:true,
@@ -100,29 +110,36 @@
 		url: SITE_URL+'/acl/groups/get_json/',
 		singleSelect:true,
 		columns: [
-				{
-					field: 'state',
-					checkbox: true,
-          align: 'center',
-          valign: 'middle'
-        },
-				{
-						field: 'name',
-						title: 'NAMA GROUP',
-						halign:'center',
-						sortable:true
-				},
-				{
-						field: 'description',
-						title: 'DESKRIPSI',
-						halign:'center',
-						sortable:true
-				}
-				],
-				onLoadSuccess:function(e){
-					$('#total_record').html(e.total);
-					$('.fixed-table-pagination').addClass('panel-footer clearfix bg-gray-active');
-				}
+			{
+				field: 'state',
+				checkbox: true,
+          		align: 'center',
+          		valign: 'middle'
+        	},
+			{
+				field: 'name',
+				title: 'NAMA GROUP',
+				halign:'center',
+				sortable:true
+			},
+			{
+				field: 'description',
+				title: 'DESKRIPSI',
+				halign:'center',
+				sortable:true
+			}
+		],
+		onLoadSuccess:function(e){
+			$('#total_record').html(e.total);
+			$('.fixed-table-pagination').addClass('panel-footer clearfix bg-gray-active');
+			disable_btn();
+		},
+		onCheck: function(row) {
+			enable_btn();
+		},
+		onUncheck: function(row) {
+			disable_btn();
+		}
 	});
 	
 	<?php if($auth_meta['add']):?>
@@ -158,7 +175,7 @@
 				
 				$('#myModal').modal('show');
 			}else{
-				alert('Silahkan memilih record yang akan diedit terlebih dulu.');
+				swal('Warning', 'Silahkan memilih record yang akan diedit terlebih dulu', 'warning');
 			}
 			e.preventDefault();
 		});
@@ -176,11 +193,13 @@
 						success: function(data){
 							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
 							if(data.success){
-								alert("Selamat,\n\r"+data.msg);
+								swal('Success', 'Selamat.\n\r' + data.msg, 'success');
+
 								$('#myModal').modal('hide');
-								$('#grid_kec').bootstrapTable('refresh');
+								$('#thegrid').bootstrapTable('refresh');
 							}else{
-								alert("Ada kesalahan.\n\r"+data.msg);
+								swal('Warning', 'Ada kesalahan.\n\r' + data.msg, 'warning');
+
 								$('#myModal').modal('hide');
 							}
 						}
@@ -195,29 +214,37 @@
 	
 	<?php if($auth_meta['del']):?>
 		$('#btn-del').click(function(e){
-			var rowSel=getRowSelections();
-			if(rowSel.length){
-				var r = confirm("Apakah anda yakin akan menghapus data tersebut !");
-				if (r == true) {
-					$.ajax({
-						type: "POST",
-						url: SITE_URL+"/acl/groups/act_del/",
-						dataType: "json",
-						data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
-						success: function(data){
-							$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
-							if(data.success){
-								alert("Selamat,\n\r"+data.msg);	
-								$('#grid_kec').bootstrapTable('refresh');
-							}else{
-								alert("Ada kesalahan.\n\r"+data.msg);
-							}
-						}
-					});
-				}				
-			}else{
-				alert('Silahkan memilih record yang akan dihapus terlebih dulu.');			
-			}
+			swal({
+				title: 'Apakah anda yakin akan menghapus ?',
+				text: "Data yang terhapus tidak dapat dikembalikan !",
+				icon: 'warning',
+				buttons: true,
+				dangerMode: true
+			}).then(function(isConfirm) {
+				if (isConfirm) {
+					var rowSel=getRowSelections();
+					if(rowSel.length){
+						$.ajax({
+							type: "POST",
+							url: SITE_URL+"/acl/groups/act_del/",
+							dataType: "json",
+							data: {id:rowSel[0].id,<?=$csrf['name'];?>:$('.<?=$csrf['name'];?>').val()},
+							success: function(data){
+								$('.<?=$csrf['name'];?>').val(data.<?=$csrf['name'];?>);
+								if(data.success){
+									swal('Success', 'Selamat.\n\r' + data.msg, 'success');
+									$('#thegrid').bootstrapTable('refresh');
+									}else{
+										swal('Warning', 'Ada Kesalahan.\n\r' + data.msg, 'success');
+									}
+								}
+							});
+
+					}else{
+						swal('Warning', 'Silahkan memilih record yang akan diedit terlebih dulu', 'warning');
+					}
+				}
+			});
 			e.preventDefault();
 		});
 		<?php endif;?>
