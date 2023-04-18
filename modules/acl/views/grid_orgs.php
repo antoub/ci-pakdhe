@@ -122,20 +122,22 @@
 				//pageSize: 10,
 				//pageList:"[5, 10, 20, 50, 100, 200]" ,
 				columns: [
-				{
-					field: 'state',
-					checkbox: true,
-          align: 'center',
-          valign: 'middle'
-        },
-				<?php foreach($fields as $k=>$v):if($v<>'id'):?>
-				{
-						field: '<?php echo $v;?>',
-						halign:'center',
-						title: '<?php echo str_replace('_',' ',strtoupper($v));?>',
-						sortable:true
-				},
-				<?php endif;endforeach;?>
+					{
+						field: 'state',
+						checkbox: true,
+						align: 'center',
+						valign: 'middle'
+					},
+				<?php foreach($fields as $k=>$v):?>
+					<?php if($v<>'id'):?>
+						{
+							field: '<?php echo $v;?>',
+							halign:'center',
+							title: '<?php echo str_replace('_',' ',strtoupper($v));?>',
+							sortable:true
+						},
+					<?php endif;?>
+				<?php endforeach;?>
 				],
 				onLoadSuccess:function(e){
 					$('#total_record').html(e.total);
